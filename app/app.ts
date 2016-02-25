@@ -19,6 +19,7 @@ import {Component, ElementRef, OnInit, OnDestroy} from 'angular2/core';
 export class AppComponent implements OnInit, OnDestroy {
 
     private _elementRef: ElementRef
+    private videoJSplayer : VideoJSPlayer
 
     constructor(elementRef: ElementRef) {
         this._elementRef = elementRef
@@ -27,12 +28,13 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit() {
         console.log('Init - Component initialized')
 
-        videojs(document.getElementById('example_video_1'), {}, function() {
+        this.videoJSplayer = videojs(document.getElementById('example_video_1'), {}, function() {
             // This is functionally the same as the previous example.
         });
     }
 
     ngOnDestroy() {
         console.log('Deinit - Destroyed Component')
+        this.videoJSplayer.dispose()
     }
 }
